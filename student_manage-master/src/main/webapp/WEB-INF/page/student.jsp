@@ -80,7 +80,7 @@
                         <a role="menuitem" tabindex="-1" href="javascript:void[0]">个人信息</a>
                     </li>
                     <li role="presentation">
-                        <a role="menuitem" tabindex="-1" onclick="alert('有需要请联系系统管理员+QQ2973211152!')">帮助</a>
+                        <a role="menuitem" tabindex="-1" onclick="alert('有需要请联系系统管理员!')">帮助</a>
                     </li>
                     <li role="presentation" class="divider"></li>
                     <li role="presentation">

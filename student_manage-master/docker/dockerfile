@@ -1,0 +1,8 @@
+# 使用官方的Tomcat镜像作为基础镜像
+FROM tomcat:9.0
+
+# 将war包复制到容器的webapps目录下
+COPY Student-Manage-1.0.0.war /usr/local/tomcat/webapps/
+
+# 暴露Tomcat的默认端口
+EXPOSE 8080
