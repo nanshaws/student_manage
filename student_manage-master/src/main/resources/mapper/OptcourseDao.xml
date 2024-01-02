@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.student.dao.OptcourseDao">
+
+    <resultMap id="BaseResultMap" type="cn.student.entity.Optcourse">
+        <!--@Table optcourse-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="score" column="score" jdbcType="OTHER"/>
+        <result property="kind" column="kind" jdbcType="VARCHAR"/>
+        <result property="semester" column="semester" jdbcType="VARCHAR"/>
+        <result property="term" column="term" jdbcType="VARCHAR"/>
+        <association property="teacher" javaType="cn.student.entity.Teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+
+    <!-- 查询该学期各种类可选课程 -->
+    <select id="queryAllCourse" resultMap="BaseResultMap">
+        select oc.id,
+               oc.name,
+               oc.score,
+               oc.kind,
+               t.name tname
+        from optcourse oc
+                 left join teacher t on t.id = oc.tid
+        where kind = #{kind}
+          and semester = #{semester}
+          and term = #{term}
+    </select>
+
+    <!-- 依据课程号查询课程信息，用于显示在模态框中 -->
+    <select id="getOptCourseById" resultMap="BaseResultMap">
+        select *
+        from optcourse
+        where id = #{optcourseId};
+    </select>
+
+    <!-- 管理员查询所有选修课 -->
+    <select id="getAllOptCourse" resultMap="BaseResultMap">
+        select *
+        from optcourse
+    </select>
+
+    <!-- 管理员修改课程信息 -->
+    <update id="modifyOptCourseInfo">
+        update optcourse
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="score != null and score != ''">
+                score = #{score},
+            </if>
+            <if test="kind != null and kind != ''">
+                kind = #{kind},
+            </if>
+            <if test="semester != null and semester != ''">
+                semester = #{semester},
+            </if>
+            <if test="term != null and term != ''">
+                term = #{term},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 管理员删除课程信息 -->
+    <delete id="deleteOptCourseInfo">
+        delete
+        from optcourse
+        where id = #{optcourseId};
+    </delete>
+
+    <!-- 管理员录入信息 -->
+    <insert id="addOptCourseInfo">
+        insert into optcourse (name, score, kind, semester, term, tid)
+        values (#{name}, #{score}, #{kind}, #{semester}, #{term}, #{tid});
+    </insert>
+</mapper>

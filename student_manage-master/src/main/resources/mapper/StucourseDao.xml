@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.student.dao.StucourseDao">
+
+    <resultMap id="BaseResultMap" type="cn.student.entity.Stucourse">
+        <!--@Table stucourse-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="stuId" column="stu_id" jdbcType="INTEGER"/>
+        <result property="courseId" column="course_id" jdbcType="INTEGER"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <association property="course" javaType="cn.student.entity.Course">
+            <result property="name" column="cname"/>
+            <result property="score" column="cscore"/>
+            <result property="kind" column="ckind"/>
+        </association>
+        <association property="optcourse" javaType="cn.student.entity.Optcourse">
+            <result property="name" column="ocname"/>
+            <result property="score" column="ocscore"/>
+            <result property="kind" column="ockind"/>
+        </association>
+    </resultMap>
+
+    <!-- 查询该学期必修课成绩 -->
+    <select id="queryAllScore" resultMap="BaseResultMap">
+        select sc.course_id, c.name cname, sc.score, c.score cscore, c.kind ckind
+        from stucourse sc
+                 left join course c on c.id = sc.course_id
+        where sc.stu_id = #{stuId}
+          and c.term = #{term}
+          and c.semester = #{semester}
+    </select>
+
+    <!-- 查询该学期选修课成绩 -->
+    <select id="queryAllOptScore" resultMap="BaseResultMap">
+        select sc.course_id, oc.name ocname, sc.score, oc.score ocscore, oc.kind ockind
+        from stucourse sc
+                 left join optcourse oc on oc.id = sc.course_id
+        where sc.stu_id = #{stuId}
+          and oc.term = #{term}
+          and oc.semester = #{semester}
+    </select>
+
+
+    <!-- 实现选课 -->
+    <insert id="chooseCourse" useGeneratedKeys="true" keyColumn="id">
+        insert into stucourse (stu_id, course_id)
+        values (#{stuId}, #{courseId})
+    </insert>
+
+    <!-- 实现退课 -->
+    <delete id="deleteCourse">
+        delete
+        from stucourse
+        where stu_id = #{stuId}
+          and course_id = #{courseId}
+    </delete>
+
+    <!-- 教师进行成绩登记 -->
+    <update id="assignScore">
+        update stucourse set score = #{score} where stu_id = #{stuId} and course_id = #{courseId}
+    </update>
+
+</mapper>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.student.dao.TeacherDao">
+
+    <resultMap id="TeacherResultMap" type="cn.student.entity.Teacher">
+        <!--@Table teacher-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+        <result property="duty" column="duty" jdbcType="VARCHAR"/>
+        <result property="manager" column="manager" jdbcType="INTEGER"/>
+        <association property="dept" javaType="cn.student.entity.Dept">
+            <result property="deptName" column="dept_name"/>
+        </association>
+        <association property="optcourse" javaType="cn.student.entity.Optcourse">
+            <id property="id" column="ocid"/>
+            <result property="name" column="ocname"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="StudentResultMap" type="cn.student.entity.Student">
+        <!--@Table student-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+        <result property="enrollTime" column="enroll_time" jdbcType="TIMESTAMP"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="classId" column="class_id" jdbcType="VARCHAR"/>
+        <association property="dept" javaType="cn.student.entity.Dept">
+            <result property="deptName" column="dname"/>
+        </association>
+        <association property="major" javaType="cn.student.entity.Major">
+            <result property="majorName" column="mname"/>
+        </association>
+        <association property="stucourse" javaType="cn.student.entity.Stucourse">
+            <result property="score" column="scscore"/>
+        </association>
+    </resultMap>
+
+    <!-- 查询教师用户实现登录 -->
+    <select id="queryTeacher" resultMap="TeacherResultMap">
+        select t.id, t.name, t.sex, t.password, t.duty, d.dept_name, t.manager, oc.id ocid,oc.name ocname
+        from teacher t
+        left join dept d on d.dept_id = t.did
+        left join optcourse oc on t.id = oc.tid
+        where t.id = #{teacherid} and t.password = #{password}
+        <if test="manage != null and manage != 0">
+            and t.manager = #{manage}
+        </if>
+    </select>
+
+    <!-- 查询登录教师所教课程的选课学生 -->
+    <select id="queryChooseStudent" resultMap="StudentResultMap">
+        SELECT s.id,
+               s.`name`,
+               m.major_name mname,
+               d.dept_name  dname,
+               sc.score     scscore
+        FROM teacher t
+                 LEFT JOIN optcourse oc ON oc.tid = t.id
+                 LEFT JOIN stucourse sc ON sc.course_id = oc.id
+                 LEFT JOIN student s on s.id = sc.stu_id
+                 LEFT JOIN dept d on s.did = d.dept_id
+                 LEFT JOIN major m on s.mid = m.major_id
+        WHERE t.id = #{teaId}
+    </select>
+
+    <!-- 修改个人信息 -->
+    <update id="updateInfo">
+        update teacher
+        set password = #{password}
+        where id = #{id}
+    </update>
+
+    <!-- 依据工号查询教师信息，用于显示在模态框中 -->
+    <select id="getTeacherById" resultMap="TeacherResultMap">
+        select *
+        from teacher
+        where id = #{teaId};
+    </select>
+
+    <!-- 管理员查询所有教师信息 -->
+    <select id="getAllTeacher" resultMap="TeacherResultMap">
+        select t.id, t.name, t.sex, t.birthday, t.duty, d.dept_name
+        from teacher t
+                 left join dept d on t.did = d.dept_id
+        where manager = 0
+    </select>
+
+    <!-- 管理员修改教师新信息 -->
+    <update id="modifyTeacherInfo">
+        update teacher
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="duty != null and duty != ''">
+                duty = #{duty},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 管理员删除教师信息 -->
+    <delete id="deleteTeacherInfo">
+        delete
+        from teacher
+        where id = #{teaId};
+    </delete>
+
+    <!-- 管理员录入教师信息 -->
+    <insert id="addTeacherInfo">
+        insert into teacher (name, sex, birthday, password, duty, did, manager)
+        values (#{name}, #{sex}, #{birthday}, '123', #{duty}, #{did}, 0);
+    </insert>
+</mapper>

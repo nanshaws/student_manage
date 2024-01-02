@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.student.dao.StudentDao">
+
+    <resultMap id="BaseResultMap" type="cn.student.entity.Student">
+        <!--@Table student-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="classId" column="class_id" jdbcType="VARCHAR"/>
+        <result property="enrollTime" column="enroll_time" jdbcType="TIMESTAMP"/>
+        <association property="dept" javaType="cn.student.entity.Dept">
+            <result property="deptName" column="dept_name"/>
+        </association>
+        <association property="major" javaType="cn.student.entity.Major">
+            <result property="majorName" column="major_name"/>
+        </association>
+    </resultMap>
+
+    <!-- 查询学生用户实现登录 -->
+    <select id="queryStudent" resultMap="BaseResultMap">
+        select s.id,
+               s.password,
+               s.name,
+               s.sex,
+               s.class_id,
+               s.address,
+               s.phone,
+               m.major_name,
+               d.dept_name,
+               s.enroll_time
+        from student s
+                 left join dept d on s.did = d.dept_id
+                 left join major m on s.mid = m.major_id
+        where id = #{studentid}
+    </select>
+
+    <!-- 更新学生信息 -->
+    <update id="updateInfo">
+        update student
+        <set>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 依据学号查询学生信息，用于显示在模态框中 -->
+    <select id="getStudentById" resultMap="BaseResultMap">
+        select *
+        from student
+        where id = #{stuId};
+    </select>
+
+    <!-- 管理员查询所有学生 -->
+    <select id="getAllStudent" resultMap="BaseResultMap">
+        select s.id,
+               s.name,
+               s.sex,
+               s.birthday,
+               s.address,
+               s.phone,
+               s.class_id,
+               s.enroll_time,
+               m.major_name,
+               d.dept_name
+        from student s
+                 left join major m on s.mid = m.major_id
+                 left join dept d on s.did = d.dept_id
+    </select>
+
+    <!-- 管理员修改学生信息 -->
+    <update id="modifyStudentInfo">
+        update student
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="classId != null and classId != ''">
+                class_id = #{classId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 管理员删除学生信息 -->
+    <delete id="deleteStudentInfo">
+        delete
+        from student
+        where id = #{stuId};
+    </delete>
+
+    <!-- 管理员录入学生信息 -->
+    <insert id="addStudentInfo">
+        insert into student (name, sex, birthday, address, phone, password, class_id, mid, did, enroll_time)
+        values (#{name}, #{sex}, #{birthday}, #{address}, #{phone}, '123', #{classId}, #{mid}, #{did},
+                #{enrollTime});
+    </insert>
+</mapper>

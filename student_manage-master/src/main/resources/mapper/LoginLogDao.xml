@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.student.dao.LoginLogDao">
+
+    <resultMap id="BaseResultMap" type="cn.student.entity.LoginLog">
+        <!--@Table login_log-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="loginUser" column="login_user" jdbcType="VARCHAR"/>
+        <result property="loginTime" column="login_time" jdbcType="TIMESTAMP"/>
+        <result property="identity" column="identity" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 记录用户登录日志 -->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into manage.login_log(login_user, login_time, identity)
+        values (#{loginUser}, #{loginTime}, #{identity})
+    </insert>
+
+
+</mapper>
