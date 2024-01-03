@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * (Major)实体类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-17 18:03:51
  */
 public class Major implements Serializable {

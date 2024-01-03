@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * (Teacher)表服务接口
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-02 20:12:38
  */
 public interface TeacherService {

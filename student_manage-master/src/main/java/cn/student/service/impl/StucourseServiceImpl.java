@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * (Stucourse)表服务实现类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-13 20:56:19
  */
 @Service("stucourseService")

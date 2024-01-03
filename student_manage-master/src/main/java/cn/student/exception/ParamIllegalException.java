@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 参数异常
  *
- * @author SYJ
+ * @author CYL
  * @since 2021/5/3 10:54
  */
 public class ParamIllegalException extends RuntimeException {

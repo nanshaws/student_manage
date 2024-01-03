@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 用于页面跳转
  *
- * @author SYJ
+ * @author CYL
  * @since 2021/4/15 15:07
  */
 @Controller
@@ -62,11 +62,11 @@ public class PageJump {
 
     /**
      *
-     * @return 跳转到选课界面
+     * @return 跳转到上传文件界面
      */
-    @RequestMapping("/toscourse")
-    public String toscourse(){
-        return "scourse";
+    @RequestMapping("/toUpdate")
+    public String toUpdate(){
+        return "toUpdate";
     }
 
     /**
@@ -76,6 +76,15 @@ public class PageJump {
     @RequestMapping("/todcourse")
     public String todcourse(){
         return "dcourse";
+    }
+
+    /**
+     *
+     * @return 跳转到选课界面
+     */
+    @RequestMapping("/toscourse")
+    public String toscourse(){
+        return "scourse";
     }
 
     // 教师相关界面跳转

@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * (Optcourse)实体类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-16 20:09:13
  */
 public class Optcourse implements Serializable {

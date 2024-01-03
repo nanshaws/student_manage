@@ -12,7 +12,7 @@ import java.io.Serializable;
 /**
  * (Teacher)实体类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-02 20:12:38
  */
 public class Teacher implements Serializable {

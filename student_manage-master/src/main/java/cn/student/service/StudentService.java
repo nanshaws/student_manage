@@ -6,7 +6,7 @@ import com.github.pagehelper.PageInfo;
 /**
  * (Student)表服务接口
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-02 20:11:16
  */
 public interface StudentService {

@@ -5,7 +5,7 @@ import cn.student.entity.OptLog;
 /**
  * (StudentOptLog)表数据库访问层
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-05-07 16:24:19
  */
 public interface OptLogDao {

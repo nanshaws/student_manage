@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * (Course)实体类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-15 10:48:36
  */
 public class Course implements Serializable {

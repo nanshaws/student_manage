@@ -14,10 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +28,7 @@ import java.util.Map;
 /**
  * (Student)表控制层
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-02 20:11:17
  */
 @RestController
@@ -98,7 +101,6 @@ public class StudentController {
     /**
      * 查询该学期可选课程
      *
-     * @param request  请求
      * @param kind     课程类型
      * @param semester 学期
      * @param term     学年
@@ -109,6 +111,7 @@ public class StudentController {
     public List<Optcourse> queryallopt(String kind, String semester, String term) {
         return optcourseService.queryAllCourse(kind, semester, term);
     }
+
 
     /**
      * 实现选课

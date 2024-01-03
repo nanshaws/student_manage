@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (LoginLog)实体类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-05-07 15:42:31
  */
 public class LoginLog implements Serializable {

@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * (Teacher)表控制层
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-02 20:12:38
  */
 @RestController

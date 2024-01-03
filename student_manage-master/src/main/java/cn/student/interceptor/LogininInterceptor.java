@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  * 登录拦截器
  *
- * @author SYJ
+ * @author CYL
  * @since 2021/4/10 17:00
  */
 

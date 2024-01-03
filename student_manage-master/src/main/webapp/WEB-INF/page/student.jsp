@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: SYJ
+  User: CYL
   Date: 2021/4/3
   Time: 13:04
 --%>
@@ -59,6 +59,14 @@
                             <a href="<%=basePath%>todcourse" class="li-a-a" target="iframe">退课</a>
                         </div>
                     </li>
+                    <li class="nav-tab nav-ul">
+                        <a href="<%=basePath%>toUpdate" class="li-a">
+                            <i class='bx bx-upload'></i>
+                            上传文件
+                            <i class='bx bx-chevron-right' style="float: right;"></i>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>

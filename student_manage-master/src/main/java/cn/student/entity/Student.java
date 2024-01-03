@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * (Student)实体类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-02 20:11:14
  */
 public class Student implements Serializable {

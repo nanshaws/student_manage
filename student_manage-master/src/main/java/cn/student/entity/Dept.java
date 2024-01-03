@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * (Dept)实体类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-15 11:21:52
  */
 public class Dept implements Serializable {

@@ -5,7 +5,7 @@ import cn.student.entity.LoginLog;
 /**
  * (LoginLog)表数据库访问层
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-05-07 15:42:31
  */
 public interface LoginLogDao {

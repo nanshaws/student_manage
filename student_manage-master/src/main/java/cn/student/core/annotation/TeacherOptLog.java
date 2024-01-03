@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 教师及管理员操作日志注解
  *
- * @author SYJ
+ * @author CYL
  * @since 2021/5/7 16:22
  */
 @Target(ElementType.METHOD)

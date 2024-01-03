@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 自定义认证器
  *
- * @author SYJ
+ * @author CYL
  * @since 2021/5/16 12:22
  */
 public class CustomRealmAuthenticator extends ModularRealmAuthenticator {

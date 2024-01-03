@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 /**
  * 自定义TeacherRealm
  *
- * @author SYJ
+ * @author CYL
  * @since 2021/5/16 12:08
  */
 public class TeacherRealm  extends AuthorizingRealm {

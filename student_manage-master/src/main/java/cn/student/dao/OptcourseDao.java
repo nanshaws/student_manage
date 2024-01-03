@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * (Optcourse)表数据库访问层
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-16 20:09:13
  */
 public interface OptcourseDao {

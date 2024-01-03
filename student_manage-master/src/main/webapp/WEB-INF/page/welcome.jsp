@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: SYJ
+  User: CYL
   Date: 2021/4/16
   Time: 16:45
 --%>
@@ -13,7 +13,7 @@
 <head>
     <title>欢迎界面</title>
 </head>
-<body style="background-size:cover;background: url(<%=basePath%>static/img/welcome.jpg) no-repeat;">
+<body style="background-size:cover;background: url(<%=basePath%>static/img/welcomeTo.jpg) no-repeat;">
 <h1 style="text-align: center">欢迎你</h1>
 </body>
 </html>

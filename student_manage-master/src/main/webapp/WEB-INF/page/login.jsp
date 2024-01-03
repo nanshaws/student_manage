@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: SYJ
+  User: CYL
   Date: 2021/4/3
   Time: 11:06
 --%>
@@ -18,7 +18,7 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
 </head>
-<body style="background: url(<%=basePath%>static/img/bg.jpg);background-size:cover;background-repeat:no-repeat;">
+<body style="background: url(<%=basePath%>static/img/background.jpg);background-size:cover;background-repeat:no-repeat;">
 <div class="container">
     <div class="content">
         <div class="content_wrapper">

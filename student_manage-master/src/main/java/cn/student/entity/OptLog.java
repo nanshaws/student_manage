@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * (StudentOptLog)实体类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-05-07 16:24:19
  */
 public class OptLog implements Serializable {

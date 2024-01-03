@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 /**
  * (LoginLog)表服务实现类
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-05-07 15:42:31
  */
 @Service("loginLogService")

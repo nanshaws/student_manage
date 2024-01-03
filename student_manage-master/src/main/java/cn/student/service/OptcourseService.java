@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * (Optcourse)表服务接口
  *
- * @author SYJ
+ * @author CYL
  * @since 2021-04-16 20:09:13
  */
 public interface OptcourseService {
